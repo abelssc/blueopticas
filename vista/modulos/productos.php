@@ -127,8 +127,8 @@ INSERTAR DATOS TABLA Y DATATABLES
         "paginate": {
         "first": "Primero",
         "last": "Ultimo",
-        "next": "Siguiente",
-        "previous": "Anterior"}
+        "next": "->",
+        "previous": "<-"}
         }
       }).buttons().container().appendTo('#tablaProductos_wrapper .col-md-6:eq(0)');
       

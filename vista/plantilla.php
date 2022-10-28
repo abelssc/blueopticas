@@ -12,7 +12,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sistema Veterinaria</title>
+  <title>Blue Opticas</title>
   <!--===============================================
   CARGAMOS ESTILOS
   ===============================================-->
@@ -29,7 +29,7 @@
   <!--FAVICON ICO -->
   <link rel="shortcut icon" href="/pos/favicon/favicon.ico" type="image/x-icon"> 
   <!-- MIS ESTILOS -->
-  <link rel="stylesheet" href="/pos/css.css">
+  <link rel="stylesheet" href="/pos/vista/css/css.css">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="/pos/vista/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!--EVITAR QUE APARESCA LA OPCION DE TRADUCIR AL CARGAR LA PAGINA-->

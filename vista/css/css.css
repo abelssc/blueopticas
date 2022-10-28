@@ -1,0 +1,19 @@
+.adm-rol{
+    font-size: 0.8rem;
+}
+/* CLIENTES */
+.grid-abe{
+  display:grid;
+  max-width: 500px;
+  grid-template-columns: 45px repeat(4,1fr);
+  justify-items: center;
+}
+.grid-item, #formMedidaCliente h4{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+}
+#formMedidaCliente .modal-header{
+  padding-left: 36px;
+}
