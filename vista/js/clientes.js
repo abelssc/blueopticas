@@ -105,8 +105,6 @@ window.addEventListener("DOMContentLoaded",()=>{
                                 'El cliente ha sido eliminado.',
                                 'success'
                             )
-                            console.log(rs);
-                            console.log(rs.json());
                             xdatatable.ajax.reload(null,false);// user paging is not reset on reload
                         }else{
                             Swal.fire({
@@ -212,6 +210,7 @@ window.addEventListener("DOMContentLoaded",()=>{
                         'success'
                     )
                     xdatatable.ajax.reload(null,false);// user paging is not reset on reload
+                    
 
                 }else{
                     swal.fire(

@@ -336,10 +336,10 @@ MODAL MEDIDAS CLIENTE
 
 
 
-<script src="/pos/vista/js/clientes.js"></script>
+<script src="/blueopticas/vista/js/clientes.js"></script>
 <!-- INPUT MASK  -->
-<script src="/pos/vista/plugins/inputmask/jquery.inputmask.min.js"></script>
-<script src="/pos/vista/plugins/moment/moment.min.js"></script>
+<script src="/blueopticas/vista/plugins/inputmask/jquery.inputmask.min.js"></script>
+<script src="/blueopticas/vista/plugins/moment/moment.min.js"></script>
 <script>
   $('[data-mask]').inputmask();
 </script>

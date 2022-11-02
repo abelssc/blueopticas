@@ -17,3 +17,7 @@
 #formMedidaCliente .modal-header{
   padding-left: 36px;
 }
+/* VENTAS CLIENTES SELECT*/
+.select2-container .select2-selection--single{
+  height:calc(2.25rem + 2px) !important
+}

@@ -20,6 +20,7 @@ class ControladorUsuarios{
                     session_start();
                     #llenamos datos a la session
                     $_SESSION["login"]=true;
+                    $_SESSION["id"]=$row["id"];
                     $_SESSION["nombre"]=$row["nombre"];
                     $_SESSION["usuario"]=$row["usuario"];
                     $_SESSION["rol"]=$row["rol"];
@@ -36,7 +37,7 @@ class ControladorUsuarios{
                     ModeloUsuarios::MdlUpdateLastLogin($date,$row["id"]);
                     
                     #redireccionamos
-                    header("location:/pos");
+                    header("location:/blueopticas");
                   }else{
                     $this->errores[]="Contraseña incorrecta";
                   }

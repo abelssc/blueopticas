@@ -306,4 +306,4 @@ MODAL EDITAR USUARIO
     content: "Elegir";
 }
 </style>
-<script src="/pos/vista/js/usuarios.js"></script>
+<script src="/blueopticas/vista/js/usuarios.js"></script>

@@ -204,4 +204,4 @@ MODAL EDITAR Categoria
     content: "Elegir";
 }
 </style>
-<script src="/pos/vista/js/categorias.js"></script>
+<script src="/blueopticas/vista/js/categorias.js"></script>

@@ -313,4 +313,4 @@ MODAL EDITAR Producto
     content: "Elegir";
 }
 </style>
-<script src="/pos/vista/js/productos.js"></script>
+<script src="/blueopticas/vista/js/productos.js"></script>
