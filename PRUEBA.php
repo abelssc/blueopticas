@@ -11,7 +11,7 @@
     require_once __DIR__."/modelo/clientes.modelo.php";
     require_once __DIR__."/modelo/productos.modelo.php";
     require_once __DIR__."/modelo/usuarios.modelo.php";
-    require_once __DIR__."/modelo/ventas.modelo.php";
+    // require_once __DIR__."/modelo/ventas.modelo.php";
     require_once __DIR__."/modelo/coneccion.php";
 //     echo '<pre>';
 //     echo '<pre>';
@@ -69,14 +69,66 @@
 //     echo '</pre>';
 //     exit;
 
-    $db=crearConeccion();
-    $query="SELECT * FROM usuarios";
-    $res=$db->query($query);
-    var_dump($res);
-    // return $res->fetch_assoc();
-    echo '<pre>';
-    var_dump($res->fetch_all(MYSQLI_ASSOC));
-    echo '</pre>';
-    exit;
+    // $db=crearConeccion();
+    // $query="SELECT * FROM usuarios";
+    // $res=$db->query($query);
+    // var_dump($res);
+    // // return $res->fetch_assoc();
+    // echo '<pre>';
+    // var_dump($res->fetch_all(MYSQLI_ASSOC));
+    // echo '</pre>';
+//     // exit;
+// $db=crearConeccion();
+// $query="INSERT INTO situaciones (situacion) VALUES ('v1000')";
+// $db->query($query);
+// $last_insert_id_venta=$db->insert_id;
+// $query="INSERT INTO situaciones (situacion) VALUES ('$last_insert_id_venta')";
+// $db->query($query);
+// echo '<pre>';
+// var_dump($last_insert_id_venta);
+// echo '</pre>';
+// var_dump($db->insert_id);
+
+// $db=crearConeccion();
+// // $query="SELECT * FROM tipodepagos";
+// $query="INSERT INTO tipodepagos (tipodepago) VALUES ('pruebapago')";
+// $rs=$db->query($query);
+// echo '<pre>';
+// var_dump($rs->fetch_field());
+// echo '</pre>';
+// exit;
+// exit;
+
+$ventas=(object)[
+    "fecha_recojo"=>"2022-01-01",
+    "hora_recojo"=>"00:00",
+    "situacion_id"=>"0",
+    "usuarios_id"=>"15" 
+];
+echo "<pre>";
+var_dump($ventas);
+echo "<pre>";
+var_dump($ventas->fecha_recojo);
+echo "<pre>";
+var_dump(array_filter(get_object_vars($ventas)));
+$ventas2=(object)[
+    "fecha_recojo"=>"2021-10-02",
+    "hora_recojo"=>"12:02",
+    "precio"=>"0",
+    "usuarios_id"=>"8"
+];
+echo "<pre>";
+$listventas=[$ventas,$ventas2];
+var_dump($listventas);
+exit;
+// $db=crearConeccion();
+// $db->query("INSERT INTO clientes (cliente) VALUES ('CLIENTE DESDE PRUEBA v2')");
+// $last_id=$db->insert_id;
+// $stmt=$db->prepare("INSERT INTO ventas(fecha_recojo,hora_recojo,situacion_id,usuarios_id,clientes_id) VALUES (?,?,?,?,?)");
+// foreach ($listventas as  $venta) {
+//     $stmt->bind_param("ssiii",$venta->fecha_recojo,$venta->hora_recojo,$venta->situacion_id,$venta->usuarios_id,$last_id);
+//     $stmt->execute();
+// }
+
 
 

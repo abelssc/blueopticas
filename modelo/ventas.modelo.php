@@ -38,4 +38,37 @@
             }
             return $data;
         }
+        public static function mdlgetIdVenta(){
+            $db=crearConeccion();
+            $query="SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.`TABLES` WHERE TABLE_SCHEMA='blueopticas' AND TABLE_NAME='ventas'";
+            $rs=$db->query($query);
+            return $rs->fetch_column();
+        }
+        public static function mdlgetTiposSituacion(){
+            $db=crearConeccion();
+            $query="SELECT * FROM situaciones";
+            return $rs=$db->query($query);
+        }
+        
+        public static function mdlsetVenta(string $colventas,string $valventas,string $colpagosventas,string $valpagosventas,array $ventasproductos){
+            $db=crearConeccion();
+            // TABLA VENTAS
+            $query="INSERT INTO ventas ($colventas) VALUES ('$valventas')";
+            $db->query($query);
+            $last_id_venta=$db->insert_id;
+            // TABLA PAGOSVENTAS
+            $query="INSERT INTO pagosventas (ventas_id,$colpagosventas) VALUES ('$last_id_venta','$valpagosventas')";
+            $db->query($query);
+            // TABLA VENTASPRODUCTOS
+            $stmt=$db->prepare("INSERT INTO ventasproductos (ventas_id,productos_id,cantidad,precio) VALUES (?,?,?,?)");
+            foreach ($ventasproductos as $row) {
+                $stmt->bind_param("iiid",$last_id_venta,$row->productos_id,$row->cantidad,$row->precio);
+                $stmt->execute();
+            }
+            $stmt->close();
+            return  $last_id_venta;
+
+        }
+
+
     }

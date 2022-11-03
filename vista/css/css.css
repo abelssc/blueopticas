@@ -8,7 +8,7 @@
   grid-template-columns: 45px repeat(4,1fr);
   justify-items: center;
 }
-.grid-item, #formMedidaCliente h4{
+.grid-item, #formMedidaCliente h4,.btnCrearCliente{
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -20,4 +20,14 @@
 /* VENTAS CLIENTES SELECT*/
 .select2-container .select2-selection--single{
   height:calc(2.25rem + 2px) !important
+}
+@media (min-width:1400px) {
+  .col-xxl-5{
+    flex: 0 0 41.666666667%;
+    max-width: 41.666666667%;
+  }
+  .col-xxl-7{
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+  }
 }

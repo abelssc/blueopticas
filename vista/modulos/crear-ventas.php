@@ -29,7 +29,7 @@
         <!--===============================================
         CREAR VENTAS
         ===============================================-->
-        <div class="col-lg-5 col-12">
+        <div class="col-12 col-lg-6 col-xl-5">
             <div class="card card-success">
               <div class="card-header with-border"></div>
               <!-- FORMULARIO -->
@@ -46,21 +46,21 @@
                     <div class="input-group">
                       <span class="input-group-addon input-group-text"><i class="fa fa-user"></i></span>
                       <input type="text" class="form-control" readonly value="<?=$_SESSION["usuario"]?>">
-                      <input type="hidden" name="id_usuario" value="<?=$_SESSION["id"]?>" required>
+                      <input type="hidden" name="usuarios_id" value="<?=$_SESSION["id"]?>" required>
                     </div>
                   </div>
                   <!-- N° ORDEN -->
                   <div class="form-group">
                     <div class="input-group">
                       <span class="input-group-addon input-group-text"><i class="fa fa-key"></i></span>
-                      <input type="text" class="form-control" readonly value="10001" required name="id_venta">
+                      <input type="text" class="form-control" readonly value="<?=ControladorVentas::ctrgetIdVenta()?>" required name="id_venta">
                     </div>
                   </div>
                   <!-- CLIENTE -->
                   <div class="form-group row">
                     <div class="input-group col-sm-8 mb-3 mb-sm-0">
                       <span class="input-group-text"><i class="fa fa-users"></i></span>
-                      <select class="form-control" required name="id_cliente" id="selectbuscador">
+                      <select class="form-control" required name="clientes_id" id="selectbuscador">
                         <option value='' disabled selected>Seleccione Cliente</option>
                       </select>
                     </div>
@@ -93,7 +93,7 @@
                     <div class="input-group">
                       <div class="row align-items-end">
                         <div class="input-group col-sm-4">
-                          <select name="id_tipodepagos" id="" class="form-control" required>
+                          <select name="pagos_id" id="" class="form-control" required>
                             <option value="" disabled selected>--Metodo de pago--</option>
                             <?php $res=ControladorVentas::ctrgetTiposdePago()?>
                             <?php while($row=$res->fetch_assoc()):?>
@@ -107,7 +107,7 @@
                               <label for="">A cuenta:</label>
                               <div class="input-group">
                                 <span class="input-group-text">S/.</span>
-                                <input type="number" class="form-control" name="acuenta" required>
+                                <input type="number" class="form-control" name="acuenta" required min="0">
                               </div>
                             </div>
                             <div class="col-8 col-sm-6">
@@ -119,6 +119,33 @@
                             </div>
                           </div>
                         </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <!-- SITUACION -->
+                  <div class="form-group">
+                    <div>
+                      <label for="">Estado:</label>
+                      <div class="input-group">
+                        <span class="input-group-text"><i class="fa fa fa-heartbeat"></i></span>
+                        <select class="form-control" required name="situacion_id">
+                            <option value='' disabled selected>Seleccione Estado</option>
+                            <?php $rs=ControladorVentas::ctrgetTiposSituacion()?>
+                            <?php while($row=$rs->fetch_assoc()):?>
+                              <option value="<?=$row['id']?>"><?=$row['situacion']?></option>
+                            <?php endwhile ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row d-none pendiente">
+                      <div class="col-6">
+                        <label for="">Fecha de recojo</label>
+                        <input type="date" name="fecha_recojo" class="form-control">
+                      </div>
+                      <div class="col-6">
+                        <label for="">Hora de recojo</label>
+                        <input type="time" name="hora_recojo" class="form-control">
                       </div>
                     </div>
                   </div>
@@ -139,16 +166,20 @@
         ===============================================-->
         <template id="fragmentProductos">
           <div class="row mb-2 product-item">
-            <div class="input-group col-sm-6 mb-3 mb-sm-0">
+            <div class="input-group col-12 col-sm-5 col-lg-12 col-xxl-5 mb-3 mb-sm-0">
               <button class="btn btn-danger btnRetirarProducto"><i class="fa fa-times"></i></button>
               <input class="form-control producto" type="text" name="producto" id="" readonly>
             </div>
-            <div class="input-group col-sm-6">
+            <div class="input-group col-12 col-sm-7 col-lg-12 col-xxl-7">
               <div class="row ml-0">
-                <input class="form-control col-4 cantidad" type="number" name="cantidad" id="" placeholder="Cantidad" required>
-                <div class="input-group col-8">
+                <input class="form-control col-2 cantidad" type="number" name="cantidad" id="" placeholder="Cantidad" required min="1">
+                <div class="input-group col-5">
                   <span class="input-group-text">S/.</span>
-                  <input class="form-control precioventa" type="number" name="precioventa" id="" required>
+                  <input class="form-control precioventa" type="number" name="precioventa" id="" required placeholder="precioUnit" min="0" step="0.01">
+                </div>
+                <div class="input-group col-5">
+                  <span class="input-group-text">S/.</span>
+                  <input class="form-control monto" type="number" name="monto" id="" required readonly>
                 </div>
               </div>
             </div>
@@ -158,7 +189,7 @@
         <!--===============================================
         DATATABLE PRODUCTOS
         ===============================================-->
-        <div class="col-lg-7 col-12">
+        <div class="col-12 col-lg-6 col-xl-7">
           <div class="card card-warning">
             <div class="card-header with-boder"></div>
             <div class="card-body">
@@ -310,6 +341,9 @@ MODAL CREATE CLIENTE
       })
     })
   </script>
+  <!--===============================================
+  SELECT2
+  ===============================================-->
   <script>
     $(document).ready(function(){
       $("#selectbuscador").select2({
@@ -319,6 +353,7 @@ MODAL CREATE CLIENTE
             dataType:"json",
             type:"GET",
             delay:250,
+            width:"calc(100% - 46px)",
             data: function (params) {
               return {q:params.term}  
             },

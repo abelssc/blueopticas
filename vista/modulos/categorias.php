@@ -87,8 +87,7 @@ INSERTAR DATOS TABLA Y DATATABLES
     .finally(()=>{
       //EJECUTAMOS DATATABLE
       new DataTable("#tablaCategorias",{
-        "responsive":true, 
-        "lengthChange":false,
+        "responsive":true,
         "autoWidth":false,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
         "language": {

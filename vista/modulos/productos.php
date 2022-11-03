@@ -110,7 +110,7 @@ INSERTAR DATOS TABLA Y DATATABLES
         "responsive":true, 
         "lengthChange":true,
         "autoWidth":false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+        "buttons": ["excel", "pdf", "print", "colvis"],
         "language": {
         "decimal": "",
         "emptyTable": "No hay información",
