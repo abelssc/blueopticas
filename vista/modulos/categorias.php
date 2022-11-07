@@ -89,6 +89,7 @@ INSERTAR DATOS TABLA Y DATATABLES
       new DataTable("#tablaCategorias",{
         "responsive":true,
         "autoWidth":false,
+        dom: '<"top d-flex justify-content-between"Bf>t<"bottom d-flex justify-content-between"lip>',
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
         "language": {
         "decimal": "",
@@ -109,7 +110,7 @@ INSERTAR DATOS TABLA Y DATATABLES
         "next": "Siguiente",
         "previous": "Anterior"}
         }
-      }).buttons().container().appendTo('#tablaCategorias_wrapper .col-md-6:eq(0)');
+      })
       
     })
 

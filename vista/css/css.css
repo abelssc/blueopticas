@@ -1,3 +1,11 @@
+aside.main-sidebar,nav.main-header,footer.main-footer{
+  background-image:url("../dist/img/bg8.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+footer.main-footer{
+  background-position: bottom;
+}
 .adm-rol{
     font-size: 0.8rem;
 }
@@ -30,4 +38,8 @@
     flex: 0 0 58.333333%;
     max-width: 58.333333%;
   }
+}
+/* ADM-VENTAS */
+.min-w-60{
+  min-width: 60%;
 }

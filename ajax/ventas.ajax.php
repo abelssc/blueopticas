@@ -34,7 +34,36 @@
     GET VENTAS
     =================================================*/
         if(isset($_GET["datatableVentas"])){
-            ControladorVentas::ctrgetVentas();
+            $ventas=ControladorVentas::ctrgetVentas();
+            $newventas=array_map(function($venta){
+                // ACUENTA
+                $venta["acuenta"]="<span class='min-w-60 btn btn-sm btn-success'>S/. ".$venta["acuenta"]."</span>";
+                // TOTAL
+                $venta["preciototal"]="<span class='min-w-60 btn btn-sm btn-primary'>S/. ".$venta["preciototal"]."</span>";
+                // DEBE
+                $venta["debe"]="<span class='min-w-60 btn btn-sm btn-danger'>S/. ".$venta["debe"]."</span>";
+                // ESTADO
+                $estado="";
+                if($venta['situacion']==="entregado"){
+                    $estado="btn-success";
+                }elseif($venta['situacion']==="pendiente"){
+                    $estado="btn-warning";
+                }else{
+                    $estado="btn-danger";}
+              
+                $venta['situacion']="<button class='btn btn-sm $estado'>".$venta['situacion']."</button>";
+
+                // ACCIONES
+                $venta['acciones']='<div class="btn-group" style="gap:5px">
+                <button class="btn btn-info btnComprasCliente" data-toggle="modal" data-target="#modalComprasCliente" data-id="'.$venta["id"].'"><i class="fa fa-shopping-cart"></i></button>
+                <a href="index.php?ruta=editar-venta&ventaid='.$venta["id"].'" class="btn btn-warning btnEditarVenta"><i class="fa fa-pencil-alt text-white"></i></a>
+                <button class="btn btn-danger btnEliminarVenta" data-toggle="modal" data-target="#modalEliminarVenta" data-id="'.$venta["id"].'"><i class="fa fa-times"></i></button>
+              </div>';
+
+
+                return $venta;
+            },$ventas);
+            echo json_encode($newventas);
         }
     
     }

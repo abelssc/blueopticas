@@ -61,6 +61,7 @@ window.addEventListener("DOMContentLoaded",()=>{
             actualizarPrecio();
         }
 
+
         
         
     })
@@ -157,7 +158,8 @@ window.addEventListener("DOMContentLoaded",()=>{
                 hora_recojo:$formVenta.hora_recojo.value,
                 situacion_id:$formVenta.situacion_id.value,
                 usuarios_id:$formVenta.usuarios_id.value,
-                clientes_id:$formVenta.clientes_id.value
+                clientes_id:$formVenta.clientes_id.value,
+                registro:$formVenta.fecha.value
             }
             
             // VALORES PARA TABLA PAGOSVENTAS
@@ -206,7 +208,6 @@ window.addEventListener("DOMContentLoaded",()=>{
                     )
                     // volvemos el formulario a su valor inicial 
                     $formVenta.reset();
-                    console.log($formVenta);
                     // reseteamos botonos de acciones
                     $formVenta.querySelectorAll(".product-item").forEach(pr=>{
                         pr.outerHTML="";

@@ -95,6 +95,14 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="reporte-pagos" class="nav-link">
+                            <i class="nav-icon far fa-circle"></i>
+                            <p>
+                                Reporte de Pagos
+                            </p>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

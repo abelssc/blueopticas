@@ -110,6 +110,7 @@ INSERTAR DATOS TABLA Y DATATABLES
         "responsive":true, 
         "lengthChange":true,
         "autoWidth":false,
+        dom: '<"top d-flex justify-content-between"Bf>t<"bottom d-flex justify-content-between"lip>',
         "buttons": ["excel", "pdf", "print", "colvis"],
         "language": {
         "decimal": "",
@@ -130,7 +131,7 @@ INSERTAR DATOS TABLA Y DATATABLES
         "next": "->",
         "previous": "<-"}
         }
-      }).buttons().container().appendTo('#tablaProductos_wrapper .col-md-6:eq(0)');
+      })
       
     })
 </script>

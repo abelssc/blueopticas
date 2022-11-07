@@ -6,13 +6,16 @@
     require_once __DIR__."/controlador/productos.controlador.php";
     require_once __DIR__."/controlador/usuarios.controlador.php";
     require_once __DIR__."/controlador/ventas.controlador.php";
+    require_once __DIR__."/controlador/pagos.controlador.php";
+
     #MODELOS
     require_once __DIR__."/modelo/categorias.modelo.php";
     require_once __DIR__."/modelo/clientes.modelo.php";
     require_once __DIR__."/modelo/productos.modelo.php";
     require_once __DIR__."/modelo/usuarios.modelo.php";
-    // require_once __DIR__."/modelo/ventas.modelo.php";
+    require_once __DIR__."/modelo/ventas.modelo.php";
     require_once __DIR__."/modelo/coneccion.php";
+    require_once __DIR__."/modelo/pagos.modelo.php";
 //     echo '<pre>';
 //     echo '<pre>';
 //     var_dump(ModeloClientes::getMdlDataTable());
@@ -99,28 +102,28 @@
 // exit;
 // exit;
 
-$ventas=(object)[
-    "fecha_recojo"=>"2022-01-01",
-    "hora_recojo"=>"00:00",
-    "situacion_id"=>"0",
-    "usuarios_id"=>"15" 
-];
-echo "<pre>";
-var_dump($ventas);
-echo "<pre>";
-var_dump($ventas->fecha_recojo);
-echo "<pre>";
-var_dump(array_filter(get_object_vars($ventas)));
-$ventas2=(object)[
-    "fecha_recojo"=>"2021-10-02",
-    "hora_recojo"=>"12:02",
-    "precio"=>"0",
-    "usuarios_id"=>"8"
-];
-echo "<pre>";
-$listventas=[$ventas,$ventas2];
-var_dump($listventas);
-exit;
+// $ventas=(object)[
+//     "fecha_recojo"=>"2022-01-01",
+//     "hora_recojo"=>"00:00",
+//     "situacion_id"=>"0",
+//     "usuarios_id"=>"15" 
+// ];
+// echo "<pre>";
+// var_dump($ventas);
+// echo "<pre>";
+// var_dump($ventas->fecha_recojo);
+// echo "<pre>";
+// var_dump(array_filter(get_object_vars($ventas)));
+// $ventas2=(object)[
+//     "fecha_recojo"=>"2021-10-02",
+//     "hora_recojo"=>"12:02",
+//     "precio"=>"0",
+//     "usuarios_id"=>"8"
+// ];
+// echo "<pre>";
+// $listventas=[$ventas,$ventas2];
+// var_dump($listventas);
+// exit;
 // $db=crearConeccion();
 // $db->query("INSERT INTO clientes (cliente) VALUES ('CLIENTE DESDE PRUEBA v2')");
 // $last_id=$db->insert_id;
@@ -129,6 +132,24 @@ exit;
 //     $stmt->bind_param("ssiii",$venta->fecha_recojo,$venta->hora_recojo,$venta->situacion_id,$venta->usuarios_id,$last_id);
 //     $stmt->execute();
 // }
+// $res=ControladorVentas::ctrgetVentas();
+// $newres=array_map(function($r){
+//     $r['situacion']="Situacion ";
+//     return $r;
+// },$res);
 
+// $productos=ControladorVentas::ctrReadProductos();
+// $newproductos=array_map(function($producto){
+//     $producto['foto']="<img src='vista/imagenesbd/productos/".$producto["foto"]."' width='40px'>";
+//     $producto['acciones']="<button class='btn btn-success btnAgregarProducto' data-id='".$producto['id']."'>Agregar</button>";
+//     return $producto;
+// },$productos);
+$newres=ModeloPagos::mdlgetPagos();
+echo '<pre>';
+echo '<pre>';
+echo '<pre>';
+var_dump($newres);
+echo '</pre>';
+exit;
 
 

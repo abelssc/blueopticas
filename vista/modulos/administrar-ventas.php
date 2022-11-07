@@ -31,12 +31,14 @@
               <tr>
                 <th style="width: 50px;">Orden</th>
                 <th>Cliente</th>
-                <th>Vendedor</th>
                 <th>A Cuenta</th>
                 <th>Total</th>
                 <th>Debe</th>
                 <th>Estado</th>
-                <th>Fecha</th>
+                <th>Fecha Recojo</th>
+                <th>Hora Recojo</th>
+                <th>Vendedor</th>
+                <th>Registro</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -60,25 +62,29 @@ SCRIPTS
 <script>
   $(document).ready(function(){
     datatable=$("#tablaVentas").DataTable({
-      // ajax:{
-      //   "url":"ajax/administrar-ventas.ajax.php?datatableVentas",
-      //   "dataSrc":""
-      // },
-      // columns:[
-      //   {data:id},
-      //   {data:cliente},
-      //   {data:usuario},
-      //   {data:acuenta},
-      //   {data:total},
-      //   {data:debe},
-      //   {data:"estado"},
-      //   {data:"fecha"},
-      //   {data:"acciones"}
-      // ],
+      ajax:{
+        "url":"ajax/ventas.ajax.php?datatableVentas",
+        "dataSrc":''
+      },
+      columns:[
+        {data:"id"},
+        {data:"cliente"},
+        {data:"acuenta"},
+        {data:"preciototal"},
+        {data:"debe"},
+        {data:"situacion"},
+        {data:"fecha_recojo"},
+        {data:"hora_recojo"},
+        {data:"usuario"},
+        {data:"registro"},
+        {data:"acciones"}
+      ],
+      dom: '<"d-flex justify-content-between flex-wrap"Bf>t<"bottom d-flex justify-content-between flex-wrap"lip>',
+      order: [[0,"desc"]],
       responsive:true, 
       lengthChange:true,
       autoWidth:false,
-      "buttons": ["excel", "pdf", "print", "colvis"],
+      buttons: ["excel", "pdf", "print", "colvis"],
       language:{
       "decimal": "",
       "emptyTable": "No hay información",
@@ -99,7 +105,7 @@ SCRIPTS
       "previous": "<-"}
       }
     });
-    datatable.buttons().container().appendTo('#tablaVentas_wrapper .col-md-6:eq(0)');
+    // datatable.order(0,"desc");
   })
 
 </script>

@@ -70,5 +70,37 @@
 
         }
 
+        public static function mdlgetVentas(){
+            $db=crearConeccion();
+            $query="SELECT v.id,v.fecha_recojo,v.hora_recojo,s.situacion,u.usuario,c.cliente,acuenta,preciototal,(preciototal-acuenta) as debe,v.registro from ventas v 
+            JOIN clientes c ON v.clientes_id=c.id
+            JOIN usuarios u ON v.usuarios_id=u.id
+            JOIN situaciones s ON v.situacion_id=s.id
+            JOIN (SELECT pv.ventas_id, SUM(pv.monto) as acuenta FROM pagosventas pv GROUP BY pv.ventas_id) pagos ON v.id=pagos.ventas_id
+            JOIN (SELECT vp.ventas_id, SUM(vp.cantidad*vp.precio) as preciototal FROM ventasproductos vp GROUP BY vp.ventas_id) preciototal ON v.id=preciototal.ventas_id";
+            $res=$db->query($query);
+            return $res->fetch_all(MYSQLI_ASSOC);
+        }
+        
+        public static function mdlgetVenta($id){
+            $db=crearConeccion();
+             // TABLA VENTAS
+             $query="SELECT * FROM ventas WHERE id='$id'";
+             $rs=$db->query($query);
+             $venta=$rs->fetch_assoc();
+             $registro=$venta["registro"];
+            //  TABLA PAGOSVENTAS
+            $query="SELECT * FROM pagosventas WHERE ventas_id='$id' and fecha='$registro'";
+            $rs=$db->query($query);
+            $pagosventas=$rs->fetch_assoc();
+            // TABLA VENTASPAGOS
+            $query="SELECT * FROM ventasproductos WHERE ventas_id='$id'";
+            $rs=$db->query($query);
+            $ventasproductos=$rs->fetch_all(MYSQLI_ASSOC);
+            return ["venta"=>$venta,"pagosventas"=>$pagosventas,"ventasproductos"=>$ventasproductos];
+
+          
+        }
+
 
     }

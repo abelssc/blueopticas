@@ -37,6 +37,6 @@
             return ModeloVentas::mdlsetVenta($colventas,$valventas,$colpagosventas,$valpagosventas,$ventasproductos);
         }
         public static function ctrgetVentas(){
-            
+            return ModeloVentas::mdlgetVentas();
         }
     }

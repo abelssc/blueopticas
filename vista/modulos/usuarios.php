@@ -113,8 +113,9 @@ INSERTAR DATOS TABLA Y DATATABLES
       //EJECUTAMOS DATATABLE
       new DataTable("#tablaUsuarios",{
         "responsive":true, 
-        "lengthChange":false,
+        "lengthChange":true,
         "autoWidth":false,
+        dom: '<"top d-flex justify-content-between"Bf>t<"bottom d-flex justify-content-between"lip>',
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
         "language": {
         "decimal": "",

@@ -76,15 +76,16 @@ INSERTAR DATOS TABLA Y DATATABLES
               {defaultContent: $botones}
               
           ],
-          dom: 'Bfrtip',
+          dom: '<"top d-flex justify-content-between"Bf>t<"bottom d-flex justify-content-between"lip>',
           buttons:[
             'excel',
             'pdf',
             'print',
             'colvis'
           ],
+          order: [[0,"desc"]],
           responsive:true, 
-          lengthChange:false,
+          lengthChange:true,
           autoWidth:false,
           language:{
           "decimal": "",
@@ -106,7 +107,7 @@ INSERTAR DATOS TABLA Y DATATABLES
           "previous": "<-"}
           }
       });
-      xdatatable.order(0,"desc")
+      
   });
 </script>
 
