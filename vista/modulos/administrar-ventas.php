@@ -31,7 +31,6 @@
               <tr>
                 <th style="width: 50px;">Orden</th>
                 <th>Cliente</th>
-                <th>A Cuenta</th>
                 <th>Total</th>
                 <th>Debe</th>
                 <th>Estado</th>
@@ -69,7 +68,6 @@ SCRIPTS
       columns:[
         {data:"id"},
         {data:"cliente"},
-        {data:"acuenta"},
         {data:"preciototal"},
         {data:"debe"},
         {data:"situacion"},

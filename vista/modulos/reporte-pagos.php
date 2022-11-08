@@ -34,7 +34,6 @@
                 <th>Cliente</th>
                 <th>Pago</th>
                 <th>Tipo de Pago</th>
-                <th>Deuda Total</th>
                 <th>Vendedor</th>
                 <th>Fecha de Pago</th>
                 <th>Acciones</th>
@@ -91,7 +90,7 @@ MODAL CREATE Pago
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <label>Deuda:</label>
+                        <label>Debe:</label>
                         <div class="input-group">
                             <span class="input-group-text">S/.</span>
                             <input type="number" class="form-control input-lg" name="deuda" disabled>
@@ -251,7 +250,6 @@ SCRIPTS
         {data:"cliente"},
         {data:"monto"},
         {data:"tipodepago"},
-        {data:"preciototal"},
         {data:"usuario"},
         {data:"fecha"},
         {data:"acciones"}

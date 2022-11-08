@@ -1,21 +1,9 @@
 <?php
   date_default_timezone_set('America/Lima');
-  echo "<pre>";
-  var_dump($getventa=ModeloVentas::mdlgetVenta($_GET["ventaid"]));
+  $getventa=ModeloVentas::mdlgetVenta($_GET["ventaid"]);
   $venta=$getventa["venta"];
   $pagosventas=$getventa["pagosventas"];
   $ventasproductos=$getventa["ventasproductos"];
-  echo "<pre>";
-  echo "<hr>";
-  var_dump($venta);
-  echo "<pre>";
-  echo "<hr>";
-  var_dump($pagosventas);
-  echo "<pre>";
-  echo "<hr>";
-  var_dump($ventasproductos);
-  echo '</pre>';
-  
 ?>
 <link rel="stylesheet" href="/blueopticas/vista/plugins/select2/css/select2.css">
 <script src="/blueopticas/vista/plugins/select2/js/select2.js"></script>
@@ -43,7 +31,7 @@
     
       <div class="row">
         <!--===============================================
-        CREAR VENTAS
+        EDITAR VENTAS
         ===============================================-->
         <div class="col-12 col-lg-6 col-xl-5">
             <div class="card card-success">
@@ -59,6 +47,7 @@
                     </div>
                   </div>
                   <!-- USUARIO -->
+                  <!-- NO EDITADO -->
                   <div class="form-group">
                     <div class="input-group">
                       <span class="input-group-addon input-group-text"><i class="fa fa-user"></i></span>
@@ -74,11 +63,14 @@
                     </div>
                   </div>
                   <!-- CLIENTE -->
+                  <!-- FALTA LLAMAR -->
                   <div class="form-group row">
                     <div class="input-group col-sm-8 mb-3 mb-sm-0">
                       <span class="input-group-text"><i class="fa fa-users"></i></span>
                       <select class="form-control" required name="clientes_id" id="selectbuscador">
-                        <option value='<?=$venta['clientes_id']?>' selected>Seleccione Cliente</option>
+                        <option value='' selected>Seleccione Cliente</option>
+                        <option value='<?=$venta['clientes_id']?>' selected><?=$venta['clientes_id'].": ".$venta['cliente']?></option>
+      
                         <!-- INGRESAR CLIENTE============= -->
                       </select>
                     </div>
@@ -93,6 +85,27 @@
                     <div class="input-group mb-2 border-bottom">
                       <label>Productos: </label>
                     </div>
+                    <?php foreach($ventasproductos as $producto):?>
+                      <div class="row mb-2 product-item" data-id="<?=$producto['productos_id']?>">
+                        <div class="input-group col-12 col-sm-5 col-lg-12 col-xxl-5 mb-3 mb-sm-0">
+                          <button class="btn btn-danger btnRetirarProducto" data-id="<?=$producto['productos_id']?>"><i class="fa fa-times"></i></button>
+                          <input class="form-control producto" type="text" name="producto" id="" readonly value="<?=$producto['producto']?>">
+                        </div>
+                        <div class="input-group col-12 col-sm-7 col-lg-12 col-xxl-7">
+                          <div class="row ml-0">
+                            <input class="form-control col-2 cantidad" type="number" name="cantidad" id="" placeholder="Cantidad" required min="1" value="<?=$producto['cantidad']?>">
+                            <div class="input-group col-5">
+                              <span class="input-group-text">S/.</span>
+                              <input class="form-control precioventa" type="number" name="precioventa" id="" required placeholder="precioUnit" min="0" step="0.01" value="<?=$producto['precio']?>">
+                            </div>
+                            <div class="input-group col-5">
+                              <span class="input-group-text">S/.</span>
+                              <input class="form-control monto" type="number" name="monto" id="" required readonly value="<?=$producto['precio']*$producto['cantidad']?>">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <?php endforeach ?>
                   </div>
                   <hr>
                   <!-- PRECIO TOTAL -->
@@ -115,7 +128,13 @@
                             <option value="" disabled selected>--Metodo de pago--</option>
                             <?php $res=ControladorVentas::ctrgetTiposdePago()?>
                             <?php while($row=$res->fetch_assoc()):?>
-                              <option value="<?=$row['id']?>"><?=$row["tipodepago"]?></option>
+                              <option value="<?=$row['id']?>" 
+                              <?php if(isset($pagosventas["pagos_id"])){
+                                  if($row['id']==$pagosventas["pagos_id"])
+                                  echo "selected";
+                              } 
+                              ?>
+                              ><?=$row["tipodepago"]?></option>
                             <?php endwhile ?>
                           </select>
                         </div>
@@ -125,7 +144,10 @@
                               <label for="">A cuenta:</label>
                               <div class="input-group">
                                 <span class="input-group-text">S/.</span>
-                                <input type="number" class="form-control" name="acuenta" required min="0">
+                                <input type="number" class="form-control" name="acuenta" required min="0" 
+                                value="<?php if(isset($pagosventas['monto']))
+                                        echo $pagosventas['monto']
+                                      ?>">
                               </div>
                             </div>
                             <div class="col-8 col-sm-6">
@@ -151,19 +173,25 @@
                             <option value='' disabled selected>Seleccione Estado</option>
                             <?php $rs=ControladorVentas::ctrgetTiposSituacion()?>
                             <?php while($row=$rs->fetch_assoc()):?>
-                              <option value="<?=$row['id']?>"><?=$row['situacion']?></option>
+                              <option value="<?=$row['id']?>"
+                               <?php if($row['id']==$venta['situacion_id'])
+                                        echo "selected"?>
+                              ><?=$row['situacion']?></option>
                             <?php endwhile ?>
                         </select>
                       </div>
                     </div>
-                    <div class="row d-none pendiente">
+                    <div class="row 
+                    <?php if($venta['situacion_id']!='2')
+                            echo 'd-none'?>
+                      pendiente">
                       <div class="col-6">
                         <label for="">Fecha de recojo</label>
-                        <input type="date" name="fecha_recojo" class="form-control">
+                        <input type="date" name="fecha_recojo" class="form-control" value="<?=$venta['fecha_recojo']?>">
                       </div>
                       <div class="col-6">
                         <label for="">Hora de recojo</label>
-                        <input type="time" name="hora_recojo" class="form-control">
+                        <input type="time" name="hora_recojo" class="form-control" value="<?=$venta['hora_recojo']?>">
                       </div>
                     </div>
                   </div>
@@ -174,11 +202,11 @@
                   </div>
                 </div>
                 <div class="card-footer">
-
                 </div>
               </form>
             </div>
-        </div>
+        </div>                      
+
         <!--===============================================
         TEMPLATE LISTA DE  PRODUCTOS 
         ===============================================-->
@@ -391,4 +419,4 @@ MODAL CREATE CLIENTE
   <script src="/blueopticas/vista/plugins/moment/moment.min.js"></script>
   <script>
     $('[data-mask]').inputmask();
-  </script>   
+  </script>

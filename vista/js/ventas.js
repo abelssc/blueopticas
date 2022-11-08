@@ -97,7 +97,6 @@ window.addEventListener("DOMContentLoaded",()=>{
             }
         }
     });
-
    /*--===============================================
     EVENTOS SUBMIT
     =================================================*/
@@ -228,4 +227,10 @@ window.addEventListener("DOMContentLoaded",()=>{
             })      
         }
     })
+    if($formVenta.querySelector(".product-item")){
+        setTimeout(() => {
+            actualizarPrecio()
+        }, 300);
+    }
+    
 })

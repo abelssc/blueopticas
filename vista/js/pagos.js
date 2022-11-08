@@ -113,7 +113,7 @@ window.addEventListener("DOMContentLoaded",()=>{
                 if(rs){
                     $formEditar.fecha.value=rs.fecha;
                     $formEditar.orden.value=rs.orden;
-                    $formEditar.deuda.value=rs.preciototal;
+                    $formEditar.deuda.value=rs.debe;
                     $formEditar.cliente.value=rs.cliente;
                     $formEditar.pagos_id.value=rs.pagos_id;
                     $formEditar.monto.value=rs.monto;

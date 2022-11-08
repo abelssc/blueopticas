@@ -31,16 +31,24 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-                <a href="usuarios" class="nav-link">
-                    <i class="nav-icon far fa-user"></i>
+                <a href="./" class="nav-link">
+                    <i class="nav-icon fa fa-chart-bar"></i>
                     <p>
-                        Usuarios
+                        Tablero
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="usuarios" class="nav-link">
+                    <i class="nav-icon fa fa-user-cog"></i>
+                    <p>
+                        Personal
                     </p>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="categorias" class="nav-link">
-                    <i class="nav-icon fa fa-th"></i>
+                    <i class="nav-icon fa fa-tag"></i>
                     <p>
                         Categorías
                     </p>
@@ -72,14 +80,6 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="administrar-ventas" class="nav-link">
-                            <i class="nav-icon far fa-circle"></i>
-                            <p>
-                                Administrar Ventas
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="crear-ventas" class="nav-link">
                             <i class="nav-icon far fa-circle"></i>
                             <p>
@@ -88,13 +88,21 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="administrar-ventas" class="nav-link">
+                            <i class="nav-icon far fa-circle"></i>
+                            <p>
+                                Administrar Ventas
+                            </p>
+                        </a>
+                    </li>
+                    <!-- <li class="nav-item">
                         <a href="reporte-ventas" class="nav-link">
                             <i class="nav-icon far fa-circle"></i>
                             <p>
                                 Reporte de Ventas
                             </p>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a href="reporte-pagos" class="nav-link">
                             <i class="nav-icon far fa-circle"></i>

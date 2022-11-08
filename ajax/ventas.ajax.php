@@ -37,7 +37,7 @@
             $ventas=ControladorVentas::ctrgetVentas();
             $newventas=array_map(function($venta){
                 // ACUENTA
-                $venta["acuenta"]="<span class='min-w-60 btn btn-sm btn-success'>S/. ".$venta["acuenta"]."</span>";
+                // $venta["acuenta"]="<span class='min-w-60 btn btn-sm btn-success'>S/. ".$venta["acuenta"]."</span>";
                 // TOTAL
                 $venta["preciototal"]="<span class='min-w-60 btn btn-sm btn-primary'>S/. ".$venta["preciototal"]."</span>";
                 // DEBE
@@ -52,7 +52,7 @@
                     $estado="btn-danger";}
               
                 $venta['situacion']="<button class='btn btn-sm $estado'>".$venta['situacion']."</button>";
-
+                
                 // ACCIONES
                 $venta['acciones']='<div class="btn-group" style="gap:5px">
                 <button class="btn btn-info btnComprasCliente" data-toggle="modal" data-target="#modalComprasCliente" data-id="'.$venta["id"].'"><i class="fa fa-shopping-cart"></i></button>

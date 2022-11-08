@@ -7,6 +7,7 @@
     require_once __DIR__."/controlador/usuarios.controlador.php";
     require_once __DIR__."/controlador/ventas.controlador.php";
     require_once __DIR__."/controlador/pagos.controlador.php";
+    require_once __DIR__."/controlador/chart.controlador.php";
 
     #MODELOS
     require_once __DIR__."/modelo/categorias.modelo.php";
@@ -16,6 +17,7 @@
     require_once __DIR__."/modelo/ventas.modelo.php";
     require_once __DIR__."/modelo/coneccion.php";
     require_once __DIR__."/modelo/pagos.modelo.php";
+    require_once __DIR__."/modelo/chart.modelo.php";
 //     echo '<pre>';
 //     echo '<pre>';
 //     var_dump(ModeloClientes::getMdlDataTable());
@@ -144,12 +146,8 @@
 //     $producto['acciones']="<button class='btn btn-success btnAgregarProducto' data-id='".$producto['id']."'>Agregar</button>";
 //     return $producto;
 // },$productos);
-$newres=ModeloPagos::mdlgetPagos();
+$year=ModeloChart::mdlgetVentaYear(0);
 echo '<pre>';
-echo '<pre>';
-echo '<pre>';
-var_dump($newres);
+var_dump($year);
 echo '</pre>';
 exit;
-
-
