@@ -165,7 +165,7 @@
       label: '2021',
       backgroundColor: 'rgba(200,200,200,0.2)',
       borderColor: 'rgb(200,200,200)',
-      data: [20, 30, 15, 2, 10, 3,5],
+      data: <?=ControladorChart::ctrgetVentaYear(1)?>,
       fill: true,
       type:"line"
       // tension: 0.4
