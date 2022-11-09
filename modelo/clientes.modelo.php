@@ -66,4 +66,23 @@
             $query="DELETE FROM clientes WHERE id='$id'";
             return $db->query($query);
         }
+        /*--===============================================
+        GET DATOS COMPRAS
+        =================================================*/
+        
+        public static function mdlgetVentasCliente($clienteID){
+            $db=crearConeccion();
+            $query="SELECT v.id,s.situacion,u.usuario,c.cliente,acuenta,preciototal,(preciototal-IFNULL(acuenta,0)) as debe,v.registro,GROUP_CONCAT(p.producto) as productos from ventas v 
+            LEFT JOIN clientes c ON v.clientes_id=c.id
+            LEFT JOIN usuarios u ON v.usuarios_id=u.id
+            LEFT JOIN situaciones s ON v.situacion_id=s.id
+            LEFT JOIN (SELECT pv.ventas_id, SUM(pv.monto) as acuenta FROM pagosventas pv GROUP BY pv.ventas_id) pagos ON v.id=pagos.ventas_id
+            LEFT JOIN (SELECT vp.ventas_id, SUM(vp.cantidad*vp.precio) as preciototal FROM ventasproductos vp GROUP BY vp.ventas_id) preciototal ON v.id=preciototal.ventas_id
+            LEFT JOIN ventasproductos vp ON vp.ventas_id=v.id
+            LEFT JOIN productos p ON vp.productos_id=p.id
+            WHERE c.id=$clienteID
+            GROUP BY v.id,s.situacion,u.usuario,c.cliente,acuenta,preciototal,(preciototal-IFNULL(acuenta,0)),v.registro";
+            $res=$db->query($query);
+            return $res->fetch_all(MYSQLI_ASSOC);
+        }
     }

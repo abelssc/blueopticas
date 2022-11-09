@@ -74,7 +74,7 @@ SWEET ALERT
       echo '<div class="wrapper">';
         include 'modulos/cabezote.php';
         include 'modulos/menu.php';
-        $rutas=["inicio","usuarios","categorias","productos","clientes","administrar-ventas","crear-ventas","reporte-ventas","editar-venta","reporte-pagos","salir"];
+        $rutas=["inicio","usuarios","categorias","productos","clientes","administrar-ventas","crear-ventas","reporte-ventas","editar-venta","info-venta","reporte-pagos","salir"];
         if(isset($_GET["ruta"])){
           if(in_array($_GET["ruta"],$rutas))
             include 'modulos/'.$_GET["ruta"].".php";

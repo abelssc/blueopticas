@@ -61,10 +61,10 @@ window.addEventListener("DOMContentLoaded",()=>{
             // ACTUALIZANDO PRECIO
             actualizarPrecio();
         }
-
-
-        
-        
+        if(e.target.matches(".back")){
+            e.preventDefault();
+            window.history.back();
+        }   
     })
 
 
@@ -284,13 +284,22 @@ window.addEventListener("DOMContentLoaded",()=>{
                         `Venta N° ${rs}`,
                         'success'
                     )
+                    window.location.href="administrar-ventas";
                 }
+            })
+            .catch(e=>{
+                swal.fire(
+                    'Error',
+                    `${e}`,
+                    'error'
+                )
             })      
         }
     })
     if($formVenta.querySelector(".product-item")){
         setTimeout(() => {
-            actualizarPrecio()
+            actualizarPrecio();
+
         }, 300);
     }
     

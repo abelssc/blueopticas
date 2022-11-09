@@ -35,6 +35,14 @@
             $res=json_encode($actualizar->ctrActualizarCliente($_POST));
             echo $res;
         }
+        /*--===============================================
+        READ COMPRAS
+        =================================================*/
+        if(isset($_POST["id"]) && $_POST["modal"]==="leerCompras"){
+            $compras= new ControladorClientes();
+            $res=json_encode($compras->ctrReadCompras($_POST));
+            echo $res;
+        }
 
         /*--===============================================
         DELETE CLIENTE

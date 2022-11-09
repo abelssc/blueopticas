@@ -70,6 +70,51 @@ window.addEventListener("DOMContentLoaded",()=>{
 
         }
         /*--===============================================
+        LEER PRODUCTOS VENDIDOS
+        =================================================*/
+        if(e.target.closest(".btnComprasCliente")){
+            // Limpiamos valores previos
+            let $form=document.querySelector("#formComprasCliente");
+            $form.querySelectorAll(".compras-item").forEach(item=>{
+                item.outerHTML="";
+            })
+            $form.reset();
+
+            // Obtenemos el ID de la row q invoco
+            let data;
+            if(e.target.closest("tr").classList.contains("child")){
+                data=xdatatable.row(e.target.closest("tr").previousElementSibling).data();
+            }else{
+                data=xdatatable.row(e.target.closest("tr")).data();
+            }
+            let $id=data.id;
+            let datos=new FormData();
+
+            datos.append("modal","leerCompras");
+            datos.append("id",$id);
+            fetch("ajax/clientes.ajax.php",{
+                method:'POST',
+                body: datos
+            })
+            .then(rs=>rs.json())
+            .then(compras=>{
+                console.log(compras);
+                $template=document.querySelector("#template-compras");
+                $fragment=document.createDocumentFragment();
+                compras.forEach(compra=>{
+                    let $clone=document.importNode($template.content,true);
+                    $clone.querySelector("[name=orden]").value=compra["id"];
+                    $clone.querySelector("[name=total]").value=parseFloat(compra["preciototal"]||="0").toFixed(2);
+                    $clone.querySelector("[name=fecha]").value=compra["registro"];
+                    $clone.querySelector("[name=producto]").value=compra["productos"];
+                    $clone.querySelector("[name=vendedor]").value=compra["usuario"];
+                    $clone.querySelector(".ruta").setAttribute("href",`index.php?ruta=info-venta&ventaid=${compra["id"]}`);
+                    $fragment.appendChild($clone);
+                })
+                $form.querySelector(".grid-compras").appendChild($fragment);
+            })
+        }
+        /*--===============================================
         DELETE clienteS
         =================================================*/
         if(e.target.closest(".btnEliminarCliente")){
@@ -118,8 +163,8 @@ window.addEventListener("DOMContentLoaded",()=>{
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
-                            text: 'Surgio un error :!',
-                            footer: `${err}`
+                            text: 'Surgiox un error :!',
+                            footer: `No se puede eliminar un cliente que realizo una compra`
                         })
                     })
                 }

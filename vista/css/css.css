@@ -1,5 +1,5 @@
-aside.main-sidebar,nav.main-header,footer.main-footer{
-  background-image:url("../dist/img/bg8.jpg");
+aside.main-sidebar,nav.main-header,footer.main-footer,.login-background{
+  background-image:url("../dist/img/bg3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -8,6 +8,10 @@ footer.main-footer{
 }
 .adm-rol{
     font-size: 0.8rem;
+}
+/* LOGIN */
+.login-box .card,.login-box .card-body{
+  background-color: rgba(255,255,255,.3);
 }
 /* CLIENTES */
 .grid-abe{
@@ -25,6 +29,31 @@ footer.main-footer{
 #formMedidaCliente .modal-header{
   padding-left: 36px;
 }
+/* CLIENTES COMPRAS */
+.compras-titulos{
+  display:grid;
+  grid-template-columns: 70px 1fr 1fr 50px;
+  column-gap: 5px;
+  justify-items: center;
+  padding: 10px 0;
+}
+.compras-item{
+  padding: 16px 0;
+  border-top: 1px solid #ccc;
+}
+.compras-first{
+  display:grid;
+  grid-template-columns: 70px 1fr 1fr 50px;
+  column-gap: 5px;
+  justify-items: center;
+}
+.compras-second{
+  display:grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: 5px;
+  justify-items: center;
+}
+
 /* VENTAS CLIENTES SELECT*/
 .select2-container .select2-selection--single{
   height:calc(2.25rem + 2px) !important

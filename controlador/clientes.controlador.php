@@ -131,4 +131,11 @@
         public static function ctrReadOptometras(){
             return ModeloClientes::mdlReadOptometras();   
         }
+        /*--===============================================
+        READ COMPRAS CLIENTE
+        =================================================*/
+        public static function ctrReadCompras($post){
+            $id=$post["id"];
+            return ModeloClientes::mdlgetVentasCliente($id);   
+        }
     }

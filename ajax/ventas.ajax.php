@@ -9,6 +9,9 @@
         if(isset($_GET["datatable"])){
             $productos=ControladorVentas::ctrReadProductos();
             $newproductos=array_map(function($producto){
+                if($producto["foto"]=="null"||$producto["foto"]==""){
+                    $producto['foto']="profile.png";
+                }
                 $producto['foto']="<img src='vista/imagenesbd/productos/".$producto["foto"]."' width='40px'>";
                 $producto['acciones']="<button class='btn btn-success btnAgregarProducto' data-id='".$producto['id']."'>Agregar</button>";
                 return $producto;
@@ -63,11 +66,11 @@
                 $venta['productos']="<div style='max-width:250px'>$string</div>";
                 // ACCIONES
                 $venta['acciones']='<div class="btn-group" style="gap:5px">
-                <button class="btn btn-info btnComprasCliente" data-toggle="modal" data-target="#modalComprasCliente" data-id="'.$venta["id"].'"><i class="fa fa-shopping-cart"></i></button>
+                <a href="index.php?ruta=info-venta&ventaid='.$venta["id"].'" class="btn btn-info btnComprasCliente"><i class="fa fa-shopping-cart"></i></a>
+        
                 <a href="index.php?ruta=editar-venta&ventaid='.$venta["id"].'" class="btn btn-warning btnEditarVenta"><i class="fa fa-pencil-alt text-white"></i></a>
-                <button class="btn btn-danger btnEliminarVenta" data-toggle="modal" data-target="#modalEliminarVenta" data-id="'.$venta["id"].'"><i class="fa fa-times"></i></button>
               </div>';
-
+            //   <button class="btn btn-danger btnEliminarVenta" data-toggle="modal" data-target="#modalEliminarVenta" data-id="'.$venta["id"].'"><i class="fa fa-times"></i></button>
 
                 return $venta;
             },$ventas);

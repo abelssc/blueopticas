@@ -63,9 +63,9 @@
         </div>
       </form>
 
-      <p class="mb-0 mt-3 text-center">
+      <!-- <p class="mb-0 mt-3 text-center">
         <a href="forgot-password.html">Olvide Mi Contraseña</a>
-      </p>
+      </p> -->
     </div>
     <!-- /.login-card-body -->
   </div>

@@ -333,8 +333,73 @@ MODAL MEDIDAS CLIENTE
   </div>
 </div>
 
+<!--==========================
+MODAL COMPRAS CLIENTE
+==========================-->
+<div class="modal fade" id="modalComprasCliente">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!--------------------------FORMULARIO------------------------------>
+      <form role="form" id="formComprasCliente">
+        <!-- Modal Header -->
+        <div class="modal-header bg-success text-white">
+          <h4 class="modal-title">Compras Cliente</h4>
+          <!-- INPUT HIDDEN PARA EL METODO DE POST -->
+          <input type="hidden" name="dataid">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
 
-
+        <!-- Modal body -->
+        <div class="modal-body">
+              <div class="grid-compras">
+                <div class="compras-titulos">
+                  <div class="grid-item font-weight-bold">#</div>
+                  <div class="grid-item font-weight-bold">TOTAL</div>
+                  <div class="grid-item font-weight-bold">FECHA</div>
+                  <div class="grid-item font-weight-bold"></div>
+                </div>
+                <!-- PRODUCTOS -->
+              </div>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <a href="" type="button" class="btn btn-success">Nueva Compra</a>
+          <button type="button" class="btn btn-default " data-dismiss="modal">Salir</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--===============================================
+FRGMENT MODAL COMPRAS CLIENTE
+===============================================-->
+<template id="template-compras">
+  <div class="compras-item">
+    <div class="compras-first mb-2">
+      <input class="form-control" name="orden" type="text" readonly>
+      <div class="input-group">
+        <span class="input-group-text font-weight-bold">S/.</span>         
+        <input class="form-control" name="total" type="text" readonly>
+      </div>
+      <input class="form-control" name="fecha" type="date" readonly>
+      <a href="#" class="btn btn-info ruta"><i class="fa fa-shopping-cart"></i></a>
+    </div>
+    <div class="compras-second">
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="nav-icon fa fa-box-open"></i>
+        </span>
+        <input class="form-control" name="producto" type="text" readonly>
+      </div>
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="nav-icon fa fa-user-cog"></i>
+        </span>              
+        <input class="form-control" name="vendedor" type="text" readonly>
+      </div>
+    </div>
+  </div>                      
+</template>
 
 
 <script src="/blueopticas/vista/js/clientes.js"></script>
