@@ -45,7 +45,7 @@ CARGAMOS SCRIPTS
 <!-- AdminLTE App -->
 <script src="/blueopticas/vista/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="/blueopticas/vista/dist/js/demo.js"></script>
+<!-- <script src="/blueopticas/vista/dist/js/demo.js"></script> -->
 <!--==========================
 DATATABLES
 ==========================-->

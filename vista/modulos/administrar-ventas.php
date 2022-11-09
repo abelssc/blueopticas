@@ -34,8 +34,7 @@
                 <th>Total</th>
                 <th>Debe</th>
                 <th>Estado</th>
-                <th>Fecha Recojo</th>
-                <th>Hora Recojo</th>
+                <th>Productos</th>
                 <th>Vendedor</th>
                 <th>Registro</th>
                 <th>Acciones</th>
@@ -71,8 +70,7 @@ SCRIPTS
         {data:"preciototal"},
         {data:"debe"},
         {data:"situacion"},
-        {data:"fecha_recojo"},
-        {data:"hora_recojo"},
+        {data:"productos"},
         {data:"usuario"},
         {data:"registro"},
         {data:"acciones"}

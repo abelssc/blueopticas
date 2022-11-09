@@ -72,7 +72,7 @@
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <i class="nav-icon far fa-image"></i>
+                    <i class="nav-icon fab fa-shopify"></i>
                     <p>
                         Ventas
                         <i class="fas fa-angle-left right"></i>

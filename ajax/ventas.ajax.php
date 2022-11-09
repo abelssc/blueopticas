@@ -52,7 +52,15 @@
                     $estado="btn-danger";}
               
                 $venta['situacion']="<button class='btn btn-sm $estado'>".$venta['situacion']."</button>";
-                
+
+                //PRODUCTOS
+                $venta['productos']??="";
+                $productos=preg_split('/,/',$venta['productos']);
+                $string="";
+                foreach ($productos as $producto) {
+                    $string.="<span class='btn btn-secondary btn-xs mr-1'>$producto</span>";
+                }
+                $venta['productos']="<div style='max-width:250px'>$string</div>";
                 // ACCIONES
                 $venta['acciones']='<div class="btn-group" style="gap:5px">
                 <button class="btn btn-info btnComprasCliente" data-toggle="modal" data-target="#modalComprasCliente" data-id="'.$venta["id"].'"><i class="fa fa-shopping-cart"></i></button>
