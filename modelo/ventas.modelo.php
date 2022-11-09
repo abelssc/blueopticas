@@ -69,6 +69,28 @@
             return  $last_id_venta;
 
         }
+        public static function mdlupdateVenta(string $cadena,string $id,array $ventasproductos){
+            $db=crearConeccion();
+            // TABLA VENTAS
+            $query="UPDATE ventas SET $cadena WHERE id='$id'";
+            $db->query($query);
+
+            // TABLA VENTASPRODUCTOS
+            //ELIMINAMOS LAS VENTAS PRODUCTIS ANTERIORES
+            $stmt=$db->prepare("DELETE FROM ventasproductos WHERE ventas_id=?");
+            $stmt->bind_param('i',$id);
+            $stmt->execute();
+            //ENVIAMOS NUEVALISTA
+            $stmt=$db->prepare("INSERT INTO ventasproductos (ventas_id,productos_id,cantidad,precio) VALUES (?,?,?,?)");
+            foreach ($ventasproductos as $row) {
+                $stmt->bind_param("iiid",$id,$row->productos_id,$row->cantidad,$row->precio);
+                $stmt->execute();
+            }
+            $stmt->close();
+            return  $id;
+
+        }
+
 
         public static function mdlgetVentas(){
             $db=crearConeccion();

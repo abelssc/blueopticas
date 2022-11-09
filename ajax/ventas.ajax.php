@@ -79,12 +79,19 @@
     SET VENTA   
     =================================================*/
     if($_SERVER["REQUEST_METHOD"]=="POST"){
-       
-        $ventas=json_decode($_POST["ventas"]);
-        $pagosventas=json_decode($_POST["pagosventas"]);
-        $ventasproductos=json_decode($_POST["ventasproductos"]);
-        $res= ControladorVentas::ctrsetVenta($ventas,$pagosventas,$ventasproductos);
-        echo json_decode($res);
+        if(isset($_POST["setventa"])){
+            $ventas=json_decode($_POST["ventas"]);
+            $pagosventas=json_decode($_POST["pagosventas"]);
+            $ventasproductos=json_decode($_POST["ventasproductos"]);
+            $res= ControladorVentas::ctrsetVenta($ventas,$pagosventas,$ventasproductos);
+            echo json_decode($res);
+        }
+        if(isset($_POST["updateventa"])){
+            $ventas=json_decode($_POST["ventas"]);
+            $ventasproductos=json_decode($_POST["ventasproductos"]);
+            $res= ControladorVentas::ctrupdateVenta($ventas,$ventasproductos);
+            echo json_decode($res);
+        }
 
     }
     

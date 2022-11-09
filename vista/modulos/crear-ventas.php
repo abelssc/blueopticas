@@ -33,7 +33,7 @@
             <div class="card card-success">
               <div class="card-header with-border"></div>
               <!-- FORMULARIO -->
-              <form id="formCrearVenta">
+              <form id="formCrearVenta" data-type="crear">
                 <div class="card-body">
                   <!-- FECHA -->
                   <div class="row mb-2 justify-content-end">

@@ -4,6 +4,7 @@
   $venta=$getventa["venta"];
   $pagosventas=$getventa["pagosventas"];
   $ventasproductos=$getventa["ventasproductos"];
+
 ?>
 <link rel="stylesheet" href="/blueopticas/vista/plugins/select2/css/select2.css">
 <script src="/blueopticas/vista/plugins/select2/js/select2.js"></script>
@@ -37,7 +38,7 @@
             <div class="card card-success">
               <div class="card-header with-border"></div>
               <!-- FORMULARIO -->
-              <form id="formCrearVenta">
+              <form id="formCrearVenta" data-type="editar">
                 <!-- EDITAR THIS =========================== -->
                 <div class="card-body">
                   <!-- FECHA -->
@@ -63,7 +64,6 @@
                     </div>
                   </div>
                   <!-- CLIENTE -->
-                  <!-- FALTA LLAMAR -->
                   <div class="form-group row">
                     <div class="input-group col-sm-8 mb-3 mb-sm-0">
                       <span class="input-group-text"><i class="fa fa-users"></i></span>
@@ -120,7 +120,7 @@
                   </div>
                   <hr>
                   <!-- METODO DE PAGO -->
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <div class="input-group">
                       <div class="row align-items-end">
                         <div class="input-group col-sm-4">
@@ -130,8 +130,8 @@
                             <?php while($row=$res->fetch_assoc()):?>
                               <option value="<?=$row['id']?>" 
                               <?php if(isset($pagosventas["pagos_id"])){
-                                  if($row['id']==$pagosventas["pagos_id"])
-                                  echo "selected";
+                                  if($row['id']==$pagosventas["pagos_id"]){
+                                  echo "selected";}
                               } 
                               ?>
                               ><?=$row["tipodepago"]?></option>
@@ -161,7 +161,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <hr>
                   <!-- SITUACION -->
                   <div class="form-group">
@@ -196,9 +196,9 @@
                     </div>
                   </div>
                   <hr>
-                  <!-- GUARDAR VENTA -->
+                  <!-- ACTUALIZAR VENTA -->
                   <div class="row justify-content-end">
-                    <button class="btn btn-primary">Guardar Venta</button>
+                    <button class="btn btn-primary">Actualizar Venta</button>
                   </div>
                 </div>
                 <div class="card-footer">

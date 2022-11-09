@@ -36,6 +36,24 @@
 
             return ModeloVentas::mdlsetVenta($colventas,$valventas,$colpagosventas,$valpagosventas,$ventasproductos);
         }
+        /*--===============================================
+        UPDATE
+        =================================================*/
+        public static function ctrupdateVenta(object $ventas,array $ventasproductos){
+            #obtenemos un arreglo asociativo del objeto ventas
+            $ventas=get_object_vars($ventas);
+            $id=$ventas["id"];
+            #filtramos los valores vacios
+            $ventas=array_filter($ventas);//si fecha="" debemos quitarla xq mysql no entiende fecha =""
+            ##creamos el formato para el update $c1='v1',$c2='$v2'
+            function merge($key,$value){
+                return "$key='$value'";
+            }
+            $map=array_map("merge",array_keys($ventas),array_values($ventas));
+            $cadena=implode(",",$map);
+
+            return ModeloVentas::mdlupdateVenta($cadena,$id,$ventasproductos);
+        }
         public static function ctrgetVentas(){
             return ModeloVentas::mdlgetVentas();
         }

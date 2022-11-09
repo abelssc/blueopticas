@@ -3,6 +3,7 @@ window.addEventListener("DOMContentLoaded",()=>{
     const $listabtnAgregar=[];
     const $formVenta=$d.querySelector("#formCrearVenta");
 
+
     // EVENTRO CLICK
     $d.addEventListener("click",(e)=>{
         /*--===============================================
@@ -79,12 +80,15 @@ window.addEventListener("DOMContentLoaded",()=>{
             sum+=parseFloat(inputmonto[i].value||0);
         }
         $formVenta.preciototal.value=sum;
-        $formVenta.debe.value= $formVenta.preciototal.value-$formVenta.acuenta.value;
+        if($formVenta.dataset.type==="crear"){
+            $formVenta.debe.value= $formVenta.preciototal.value-$formVenta.acuenta.value;
+        }
     }
     // EVENTO CHANGE
     $formVenta.addEventListener("change",e=>{
         // ACTUALIZAMOS PRECIO
         actualizarPrecio();
+        console.log(e.target);
         // DISPLAY SITACIONES VALOR PENDIENTE
         if(e.target.name=="situacion_id"){
             if(e.target.value=="2"){
@@ -149,7 +153,7 @@ window.addEventListener("DOMContentLoaded",()=>{
         /*--===============================================
         CREAR VENTA
         =================================================*/
-        if(e.target.matches("#formCrearVenta")){
+        if(e.target.matches("#formCrearVenta[data-type=crear]")){
             // CAPTURAMOS VALORES PARA TABLA VENTAS
             // id venta default
             const ventas={
@@ -189,6 +193,7 @@ window.addEventListener("DOMContentLoaded",()=>{
                 ventasproductos.push({productos_id:id,cantidad:cantidad,precio:precio})
             })
             const data=new FormData();
+            data.append("setventa","");
             data.append("ventas",JSON.stringify(ventas));
             data.append("pagosventas",JSON.stringify(pagosventas));
             data.append("ventasproductos",JSON.stringify(ventasproductos));
@@ -223,6 +228,62 @@ window.addEventListener("DOMContentLoaded",()=>{
                     fetch("ajax/ventas.ajax.php?dataid")
                     .then(rs=>rs.json())
                     .then(rs=>$formVenta.id_venta.value=rs);
+                }
+            })      
+        }
+         /*--===============================================
+        EDITAR VENTA
+        =================================================*/
+        if(e.target.matches("#formCrearVenta[data-type=editar]")){
+            // CAPTURAMOS VALORES PARA TABLA VENTAS
+            // id venta default
+            const ventas={
+                id:$formVenta.id_venta.value,
+                fecha_recojo:$formVenta.fecha_recojo.value,
+                hora_recojo:$formVenta.hora_recojo.value,
+                situacion_id:$formVenta.situacion_id.value,
+                usuarios_id:$formVenta.usuarios_id.value,
+                clientes_id:$formVenta.clientes_id.value,
+                registro:$formVenta.fecha.value
+            }
+
+            // VALORES PARA TABLA VENTASPRODUCTOS
+            // ventas_id=SELECT LAST_INSERT_ID() from ventas
+            // CAPTURAMOS LISTA DE PRODUCTOS: {productos_id,cantidad,precio}
+            const $productos=$formVenta.querySelectorAll(".product-item");
+            if(!$productos.length){
+                swal.fire(
+                    'Error',
+                    'Debe Ingresar Algun Producto',
+                    'error'
+                )
+                return;
+            }
+            const ventasproductos=[]
+            $productos.forEach(producto=>{
+                let id=producto.dataset.id;
+                let cantidad=producto.querySelector("[name=cantidad]").value;
+                let precio=producto.querySelector("[name=precioventa]").value;
+                ventasproductos.push({productos_id:id,cantidad:cantidad,precio:precio})
+            })
+            const data=new FormData();
+            data.append("updateventa","");
+            data.append("ventas",JSON.stringify(ventas));
+            // data.append("pagosventas",JSON.stringify(pagosventas));
+            data.append("ventasproductos",JSON.stringify(ventasproductos));
+
+            fetch("ajax/ventas.ajax.php",{
+                method:"POST",
+                body:data
+            })
+            .then(rs=>rs.json())
+            .then(rs=>{
+                if(rs){
+                    swal.fire(
+                        'Se Actualizo la venta',
+                        `Venta N° ${rs}`,
+                        'success'
+                    )
                 }
             })      
         }
