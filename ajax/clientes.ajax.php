@@ -28,6 +28,23 @@
             echo $res;
         }
         /*--===============================================
+        CREATE MEDIDAS
+        =================================================*/
+        if(isset($_POST["paciente_id"]) && $_POST["modal"]==="crearMedida"){
+            $medidas= new ControladorClientes();
+            echo json_encode($medidas->ctrCreateMedida($_POST));
+            
+        }
+        /*--===============================================
+        UPDATE MEDIDAS
+        =================================================*/
+        // if(isset($_POST["paciente_id"]) && $_POST["modal"]==="actualizarMedida"){
+        //     $medidas= new ControladorClientes();
+        //     echo json_encode($medidas->ctrUpdateMedida($_POST));
+            
+        // }
+
+        /*--===============================================
         UPDATE CLIENTE
         =================================================*/
         if(isset($_POST["id"]) && $_POST["modal"]==="actualizar"){

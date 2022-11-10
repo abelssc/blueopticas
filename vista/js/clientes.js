@@ -40,6 +40,7 @@ window.addEventListener("DOMContentLoaded",()=>{
             let $id=data.id;
             let $cliente=data.cliente;
             $form.querySelector("h4").textContent=`${$cliente}`;
+            $form.paciente_id.value=$id;
 
             let datos=new FormData();
             datos.append("id",$id);
@@ -51,7 +52,8 @@ window.addEventListener("DOMContentLoaded",()=>{
             .then(rs=>rs.json())
             .then(medida=>{
                 if(medida){
-                    
+                    // $form.modal.value="actualizarMedida";
+                    $form.id_medida.value=medida.id;
                     $form.esf_der.value=medida.esf_der;
                     $form.cil_der.value=medida.cil_der;
                     $form.eje_der.value=medida.eje_der;
@@ -64,6 +66,9 @@ window.addEventListener("DOMContentLoaded",()=>{
                     $form.adicion.value=medida.adicion;
                     if(medida.id_optometra)
                         $form.id_optometra.querySelector(`[value='${medida.id_optometra}']`).selected=true;
+                }
+                else{
+                    // $form.modal.value="crearMedida";
                 }
                 
             })
@@ -170,6 +175,18 @@ window.addEventListener("DOMContentLoaded",()=>{
                 }
             })    
         }
+        /*--===============================================
+        IMPRIMIR CANVA
+        =================================================*/
+        if(e.target.closest(".btn-download-medida")){
+            let $form=document.querySelector("#formMedidaCliente");
+            html2canvas($form).then(canvas => {
+                let $a=document.createElement("a");
+                $a.href=canvas.toDataURL("image/jpg");
+                $a.download=`${$form.querySelector(".modal-title").textContent}.jpg`;
+                $a.click();
+            });
+        }
     })
 
     /*--===============================================
@@ -265,6 +282,59 @@ window.addEventListener("DOMContentLoaded",()=>{
                     )
                 }
             })
+
+        }
+        /*--===============================================
+        CREATE/UPDATE MEDIDA 
+        #NO PODEMOS ACTUALIZAR LA MEDIDA DEBIDO A QUE SI UN CAMPO DE LA MEDIDA VUELVE A CERO, FILTER_ARRAY NO LO TOMARIA EN CUENTA ASI QUE SE OPTA POR CREAR OTRA MEDIDA PERO REFERENCIANDO EN EL READ MEDIDAS SIEMPRE A ESTA ULTIMA
+        =================================================*/
+        if(e.target.matches("#formMedidaCliente")){
+            let $form=document.querySelector("#formMedidaCliente");
+            let data=new FormData();
+            // data.append("modal",$form.modal.value);
+            data.append("modal","crearMedida")
+            // data.append("id",$form.id_medida.value);
+            data.append("paciente_id",$form.paciente_id.value);
+            data.append("esf_der",$form.esf_der.value);
+            data.append("cil_der",$form.cil_der.value);
+            data.append("eje_der",$form.eje_der.value);
+            data.append("pris_der",$form.pris_der.value);
+            data.append("esf_izq",$form.esf_izq.value);
+            data.append("cil_izq",$form.cil_izq.value);
+            data.append("eje_izq",$form.eje_izq.value);
+            data.append("pris_izq",$form.pris_izq.value);
+            data.append("dip",$form.dip.value);
+            data.append("adicion",$form.adicion.value);
+            data.append("id_optometra",$form.id_optometra.value);
+            fetch("ajax/clientes.ajax.php",{
+                method:"POST",
+                body:data
+            })
+            .then(rs=>rs.json())
+            .then(rs=>{
+                if(rs){
+                    $("#modalMedidaCliente").modal("hide");
+                    swal.fire(
+                        'Se Registro la medida!',
+                        'Bien',
+                        'success'
+                    )
+                }else{
+                    swal.fire(
+                        'Sucedio un error!',
+                        `error ${rs}`,
+                        'error'
+                    )
+                }
+            })
+            .catch(e=>{
+                swal.fire(
+                    'Sucedio un error!',
+                    `error ${e}`,
+                    'error'
+                )
+            })
+
 
         }
     })

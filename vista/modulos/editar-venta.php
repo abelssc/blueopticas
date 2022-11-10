@@ -34,7 +34,7 @@
         <!--===============================================
         EDITAR VENTAS
         ===============================================-->
-        <div class="col-12 col-lg-6 col-xl-5">
+        <div class="col-12 col-lg-6">
             <div class="card card-success">
               <div class="card-header with-border"></div>
               <!-- FORMULARIO -->
@@ -235,7 +235,7 @@
         <!--===============================================
         DATATABLE PRODUCTOS
         ===============================================-->
-        <div class="col-12 col-lg-6 col-xl-7">
+        <div class="col-12 col-lg-6">
           <div class="card card-warning">
             <div class="card-header with-boder"></div>
             <div class="card-body">
@@ -246,8 +246,8 @@
                     <th>Imagen</th>
                     <th>Producto</th>
                     <th>Categoria</th>
-                    <th>Precio de Venta</th>
-                    <th>Stock</th>
+                    <!-- <th>Precio de Venta</th>
+                    <th>Stock</th> -->
                     <th>Acciones</th>
                   </tr>
                 </thead>
@@ -357,8 +357,8 @@ MODAL CREATE CLIENTE
           {data: 'foto'},
           {data: 'producto'},
           {data: 'categoria'},
-          {data: 'precioventa'},
-          {data: 'stock'},
+          // {data: 'precioventa'},
+          // {data: 'stock'},
           {data: 'acciones'}
           // {defaultContent: acciones}
         ],

@@ -266,7 +266,9 @@ MODAL MEDIDAS CLIENTE
         <div class="modal-header bg-success text-white">
           <h4 class="modal-title">Medida Cliente</h4>
           <!-- INPUT HIDDEN PARA EL METODO DE POST -->
-          <input type="hidden" name="dataid">
+          <input type="hidden" name="paciente_id">
+          <!-- <input type="hidden" name="modal"> -->
+          <input type="hidden" name="id_medida">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
@@ -281,15 +283,15 @@ MODAL MEDIDAS CLIENTE
                 <div class="grid-item">EJE</div>
                 <div class="grid-item">PRISMA</div>
                 <div class="grid-item input-group-text w-100 font-weight-bold">OD</div>
-                <input class="form-control" name="esf_der" type="number">
-                <input class="form-control" name="cil_der" type="number">
-                <input class="form-control" name="eje_der" type="number">
-                <input class="form-control" name="pris_der" type="number">
+                <input class="form-control"  step="0.01" name="esf_der" type="number">
+                <input class="form-control"  step="0.01" name="cil_der" type="number">
+                <input class="form-control"  step="0.01" name="eje_der" type="number">
+                <input class="form-control"  step="0.01" name="pris_der" type="number">
                 <div class="grid-item input-group-text w-100 font-weight-bold">OI</div>
-                <input class="form-control" name="esf_izq" type="number">
-                <input class="form-control" name="cil_izq" type="number">
-                <input class="form-control" name="eje_izq" type="number">
-                <input class="form-control" name="pris_izq" type="number">
+                <input class="form-control"  step="0.01" name="esf_izq" type="number">
+                <input class="form-control"  step="0.01" name="cil_izq" type="number">
+                <input class="form-control"  step="0.01" name="eje_izq" type="number">
+                <input class="form-control"  step="0.01" name="pris_izq" type="number">
               </div>
             </div>
 
@@ -298,13 +300,13 @@ MODAL MEDIDAS CLIENTE
                   <div class="col-6">
                     <div class="input-group">
                       <span class="input-group-text">DIP</span>
-                      <input type="number" class="form-control input-lg" name="dip" placeholder="DIP">
+                      <input type="number" class="form-control input-lg" step="0.01" name="dip" placeholder="DIP">
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="input-group">
                       <span class="input-group-text">ADD</span>
-                      <input type="number" class="form-control input-lg" name="adicion" placeholder="ADD">
+                      <input type="number" class="form-control input-lg" step="0.01" name="adicion" placeholder="ADD">
                     </div>
                   </div>
                 </div>
@@ -324,9 +326,12 @@ MODAL MEDIDAS CLIENTE
           </div>
         </div>
         <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-success">Medida Cliente</button>
-          <button type="button" class="btn btn-default " data-dismiss="modal">Salir</button>
+        <div class="modal-footer justify-content-between" style="padding: 0.75rem 2rem">
+          <span class="btn btn-info btn-download-medida"><i class="fa fa-cloud-download-alt"></i></span>
+          <div>
+            <button type="submit" class="btn btn-success mr-1">Registrar Cliente</button>
+            <button type="button" class="btn btn-default " data-dismiss="modal">Salir</button>
+          </div>
         </div>
       </form>
     </div>
@@ -405,6 +410,8 @@ FRGMENT MODAL COMPRAS CLIENTE
 <script src="/blueopticas/vista/js/clientes.js"></script>
 <!-- INPUT MASK  -->
 <script src="/blueopticas/vista/plugins/inputmask/jquery.inputmask.min.js"></script>
+<!-- HTML2CANVA -->
+<script src="/blueopticas/vista/plugins/html2canvas/html2canvas.min.js"></script>
 <script src="/blueopticas/vista/plugins/moment/moment.min.js"></script>
 <script>
   $('[data-mask]').inputmask();

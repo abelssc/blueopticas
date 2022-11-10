@@ -15,10 +15,26 @@
         =================================================*/
         public static function mdlReadMedidas($id){
             $db=crearConeccion();
-            $query="SELECT * FROM medidas WHERE paciente_id='$id'";
+            $query="SELECT * FROM medidas WHERE paciente_id='$id' ORDER BY id DESC";
             $res=$db->query($query);
             return $res->fetch_assoc();
         }
+        /*--===============================================
+        CREATE MEDIDAS
+        =================================================*/
+        public static function mdlCreateMedida($columnas,$valores){
+            $db=crearConeccion();
+            $query="INSERT INTO medidas($columnas) VALUES ('$valores')";
+            return $db->query($query);
+        }
+        /*--===============================================
+        UPDATE MEDIDAS
+        =================================================*/
+        // public static function mdlUpdateMedida($cadena,$id){
+        //     $db=crearConeccion();
+        //     $query="UPDATE medidas SET $cadena WHERE id='$id'";
+        //     return $db->query($query);
+        // }
         /*--===============================================
         EXISTENCIA
         =================================================*/

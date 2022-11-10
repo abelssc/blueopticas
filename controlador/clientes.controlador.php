@@ -16,6 +16,40 @@
             }
         }
         /*--===============================================
+        CREATE MEDIDAS
+        =================================================*/
+        public static function ctrCreateMedida($post){
+            if(isset($post["paciente_id"])){
+                $post["modal"]="";
+                $medidas=array_filter($post);
+                $columnas=implode(",",array_keys($medidas));
+                $valores=implode("','",array_values($medidas));
+                return ModeloClientes::mdlCreateMedida($columnas,$valores);
+            }else{
+                return false;
+            }
+        }
+        /*--===============================================
+        UPDATE MEDIDAS
+        =================================================*/
+        // public static function ctrUpdateMedida($post){
+        //     if(isset($post["paciente_id"])){
+        //         $id=$post["id"];
+        //         $post["modal"]="";
+        //         $post["id"]="";
+        //         $medidas=array_filter($post);
+        //         ##creamos el formato para el update $c1='v1',$c2='$v2'
+        //         function merge($key,$value){
+        //             return "$key='$value'";
+        //         }
+        //         $map=array_map("merge",array_keys($medidas),array_values($medidas));
+        //         $cadena=implode(",",$map);
+        //         return ModeloClientes::mdlUpdateMedida($cadena,$id);
+        //     }else{
+        //         return false;
+        //     }
+        // }
+        /*--===============================================
         EXISTENCIA
         =================================================*/
         public static function getCtrIsset($tabla,$columna,$value){

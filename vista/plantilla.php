@@ -67,7 +67,7 @@ SWEET ALERT
 ===============================================-->
 <script src="/blueopticas/vista/plugins/sweetalert2/sweetalert2.all.js"></script>
 </head>
-<body class="hold-transition sidebar-mini <?php  if(!estaAutenticado()) echo 'login-page'?> ">
+<body class="hold-transition sidebar-mini sidebar-collapse <?php  if(!estaAutenticado()) echo 'login-page'?> ">
     <?php
     if(estaAutenticado()){
       #<!-- Site wrapper -->
