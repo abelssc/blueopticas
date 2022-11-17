@@ -40,7 +40,18 @@
         }
         public static function mdlgetIdVenta(){
             $db=crearConeccion();
-            $query="SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.`TABLES` WHERE TABLE_SCHEMA='blueopticas' AND TABLE_NAME='ventas'";
+            $versionsql=$db->get_server_info();
+            $pattern="/\..+/";
+            #obtenemos la version ejm string 8.5.13-> int 8 
+            $versionsql=intval(preg_replace($pattern,"",$versionsql));
+            if($versionsql>=8){
+                $query="set information_schema_stats_expiry=0";
+                $db->query($query);
+                $query="SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'blueopticas' and TABLE_NAME='ventas'";
+            }else{
+                $query="SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'blueopticas' and TABLE_NAME='ventas'";
+            }
+            
             $rs=$db->query($query);
             return $rs->fetch_column();
         }
