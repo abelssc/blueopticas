@@ -113,6 +113,14 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item">
+                <a href="caja" class="nav-link">
+                    <i class="nav-icon fa fa-cash-register"></i>
+                    <p>
+                        Caja
+                    </p>
+                </a>
+            </li>
         </ul>
       </nav> 
     </div>
