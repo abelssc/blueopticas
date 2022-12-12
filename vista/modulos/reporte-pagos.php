@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Administrar Pagos</h1>
+            <h1>Administrar Pagos y Adelantos</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="inicio">Pagos</a></li>
-              <li class="breadcrumb-item active">Administrar Pagos</li>
+              <li class="breadcrumb-item active">Recojos y Adelantos</li>
             </ol>
           </div>
         </div>
@@ -22,14 +22,13 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <button  class="btn btn-success" data-toggle="modal" data-target="#modalIngresarPago">Ingresar Pago
+          <button  class="btn btn-success" data-toggle="modal" data-target="#modalIngresarPago">Ingresar Pagos y Adelantos
           </button>
         </div>
         <div class="card-body">
           <table id="tablaPagos" class="table table-hover">
             <thead>
               <tr>
-                <th style="width: 50px;">#</th>
                 <th style="width: 50px;">Orden</th>
                 <th>Cliente</th>
                 <th>Pago</th>
@@ -62,7 +61,7 @@ MODAL CREATE Pago
       <form role="form" id="formCrearPago">
         <!-- Modal Header -->
         <div class="modal-header bg-primary text-white">
-          <h4 class="modal-title">Crear Pago</h4>
+          <h4 class="modal-title">Crear Pago y Adelanto</h4>
           <!-- INPUT HIDDEN PARA EL METODO DE POST -->
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
@@ -151,7 +150,7 @@ MODAL EDITAR PAGO
       <form role="form" id="formEditarPago">
         <!-- Modal Header -->
         <div class="modal-header bg-primary text-white">
-          <h4 class="modal-title">Editar Pago</h4>
+          <h4 class="modal-title">Editar Pago y Adelanto</h4>
           <input type="hidden" name="dataid">
           <!-- INPUT HIDDEN PARA EL METODO DE POST -->
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -245,7 +244,6 @@ SCRIPTS
         "dataSrc":''
       },
       columns:[
-        {data:"id"},
         {data:"orden"},
         {data:"cliente"},
         {data:"monto"},
