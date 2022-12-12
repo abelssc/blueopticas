@@ -35,7 +35,7 @@
             <div class="card">
                 <div class="card-header">
                   <h5>
-                    Ventas del dia <span class="fechaventasdeldia"></span>
+                    Ventas del dia <b class="text-info">S/.</b><span class="text-info" id="ventasTotal"></span><span class="fechaventasdeldia"></span>
                   </h5>
                 </div>
                 <div class="card-body">

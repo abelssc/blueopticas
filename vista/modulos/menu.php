@@ -107,7 +107,7 @@
                         <a href="reporte-pagos" class="nav-link">
                             <i class="nav-icon far fa-circle"></i>
                             <p>
-                                Reporte de Pagos
+                                Recojos y Adelantos
                             </p>
                         </a>
                     </li>

@@ -50,5 +50,12 @@
             return $res->fetch_column();
 
         }
-        
+        public static function ventasTotal($date){
+            $db=crearConeccion();
+            $query="SELECT SUM(preciototal) FROM ventas v
+            JOIN (SELECT vp.ventas_id, SUM(vp.cantidad*vp.precio) as preciototal FROM ventasproductos vp GROUP BY vp.ventas_id) preciototal ON v.id=preciototal.ventas_id
+            WHERE registro='$date'";
+            $res=$db->query($query);
+            return $res->fetch_column();
+        }
     }

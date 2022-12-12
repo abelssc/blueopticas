@@ -1,6 +1,8 @@
 window.addEventListener("DOMContentLoaded",()=>{
     const $date=document.querySelector("#fecha");
 
+    const $ventasTotal=document.querySelector("#ventasTotal");
+
     const $totalAcuenta=document.querySelector("#totalAcuenta");
     const $totalRecojos=document.querySelector("#totalRecojos");
     const $ingresosTotal=document.querySelector("#ingresosTotal");
@@ -16,11 +18,14 @@ window.addEventListener("DOMContentLoaded",()=>{
         llenarDatosTabla(e.target.value);
     })
     const llenarDatosResumen=(json)=>{
+        const ventasTotal=parseFloat(json.ventasTotal??0);
         const acuenta=parseFloat(json.acuenta??0);
         const recojos=parseFloat(json.recojos??0);
         const gastos=parseFloat(json.gastos??0);
         const efectivo=parseFloat(json.efectivo??0);
         const deposito=parseFloat(json.deposito??0);
+
+        $ventasTotal.textContent=ventasTotal;
 
         $totalAcuenta.textContent=acuenta;
         $totalRecojos.textContent=recojos;

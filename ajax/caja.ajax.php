@@ -2,6 +2,8 @@
     require_once '../modelo/caja.modelo.php';
     if($_SERVER["REQUEST_METHOD"]==="GET"){
         if(isset($_GET["date"])){
+
+            $ventasTotal=ModeloCaja::ventasTotal($_GET["date"]);
             $acuenta=ModeloCaja::totalAcuenta($_GET["date"]);
             $recojos=ModeloCaja::totalRecojos($_GET["date"]);
             $gastos=ModeloCaja::totalGastos($_GET["date"]);
@@ -9,6 +11,7 @@
             $deposito=ModeloCaja::totalDeposito($_GET["date"]);
 
             $array=[
+                "ventasTotal"=>$ventasTotal,
                 "acuenta"=>$acuenta,
                 "recojos"=>$recojos,
                 "gastos"=>$gastos,
