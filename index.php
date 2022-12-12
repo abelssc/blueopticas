@@ -16,5 +16,6 @@
     require_once __DIR__."/modelo/ventas.modelo.php";
     require_once __DIR__."/modelo/pagos.modelo.php";
     require_once __DIR__."/modelo/chart.modelo.php";
+    require_once __DIR__."/modelo/caja.modelo.php";
     $plantilla=new ControladorPlantilla();
     $plantilla->ctrPlantilla();

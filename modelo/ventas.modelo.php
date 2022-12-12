@@ -135,7 +135,33 @@
             $ventasproductos=$rs->fetch_all(MYSQLI_ASSOC);
             return ["venta"=>$venta,"pagosventas"=>$pagosventas,"ventasproductos"=>$ventasproductos];
         }
-
-        
+        public static function mdlgetVentasDia($date){
+            $db=crearConeccion();
+            $query="SELECT v.id,c.cliente,preciototal,pv.monto as acuenta,(preciototal-IFNULL(pv.monto,0)) as debe,v.registro,GROUP_CONCAT(p.producto) as productos,tp.tipodepago from ventas v 
+            LEFT JOIN clientes c ON v.clientes_id=c.id
+            LEFT JOIN pagosventas pv ON v.id=pv.ventas_id
+            LEFT JOIN (SELECT vp.ventas_id, SUM(vp.cantidad*vp.precio) as preciototal FROM ventasproductos vp GROUP BY vp.ventas_id) preciototal ON v.id=preciototal.ventas_id
+            LEFT JOIN ventasproductos vp ON vp.ventas_id=v.id
+            LEFT JOIN productos p ON vp.productos_id=p.id
+            LEFT JOIN tipodepagos tp ON pv.pagos_id=tp.id
+            WHERE v.registro='$date' and v.registro=pv.fecha
+            GROUP BY v.id,c.cliente,acuenta,preciototal,(preciototal-IFNULL(acuenta,0)),v.registro,tp.tipodepago";
+            $res=$db->query($query);
+            return $res->fetch_all(MYSQLI_ASSOC);
+        }
+        public static function mdlgetRecojosDia($date){
+            $db=crearConeccion();
+            $query="SELECT v.id,c.cliente,preciototal,pv.monto as acuenta,v.registro,pv.fecha,GROUP_CONCAT(p.producto) as productos,tp.tipodepago from ventas v 
+            LEFT JOIN clientes c ON v.clientes_id=c.id
+            LEFT JOIN pagosventas pv ON v.id=pv.ventas_id
+            LEFT JOIN (SELECT vp.ventas_id, SUM(vp.cantidad*vp.precio) as preciototal FROM ventasproductos vp GROUP BY vp.ventas_id) preciototal ON v.id=preciototal.ventas_id
+            LEFT JOIN ventasproductos vp ON vp.ventas_id=v.id
+            LEFT JOIN productos p ON vp.productos_id=p.id
+            LEFT JOIN tipodepagos tp ON pv.pagos_id=tp.id
+            WHERE pv.fecha='$date' and pv.fecha<>v.registro
+            GROUP BY v.id,c.cliente,acuenta,preciototal,v.registro,tp.tipodepago";
+            $res=$db->query($query);
+            return $res->fetch_all(MYSQLI_ASSOC);
+        }
 
     }

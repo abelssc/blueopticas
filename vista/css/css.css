@@ -72,3 +72,48 @@ footer.main-footer{
 .min-w-60{
   min-width: 60px;
 }
+/* CAJA */
+.caja-date{
+  margin-top: 1rem;
+}
+/* RESUMEN */
+.resumen-grid{
+  display: grid;
+  grid-template-columns: 150px 27px 1fr;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+}
+.resumen-title{
+  grid-column: 1/-1;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #ccc;
+}
+.resumen-total{
+  border-top: 1px solid #ccc;
+}
+h5{
+  font-weight: bold;
+}
+.fechaventasdeldia{
+  display: none;
+  float: right;
+}
+@media print{
+  .btn,a{
+    border: none !important;
+  }
+  .pagination{
+    display: none !important;
+  }
+  *{
+    color: rgb(21, 20, 20)  !important;
+  }
+  .fechaventasdeldia{
+    display: inline-block;
+  }
+  .content{
+    margin-top: 3rem;
+  }
+}

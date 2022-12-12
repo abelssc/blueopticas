@@ -57,4 +57,11 @@
         public static function ctrgetVentas(){
             return ModeloVentas::mdlgetVentas();
         }
+        public static function ctrgetVentasDia($date){
+            return ModeloVentas::mdlgetVentasDia($date);
+        }
+        public static function ctrgetRecojosDia($date){
+            return ModeloVentas::mdlgetRecojosDia($date);
+        }
+        
     }

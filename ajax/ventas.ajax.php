@@ -76,6 +76,54 @@
             },$ventas);
             echo json_encode($newventas);
         }
+    /*--===============================================
+    GET VENTAS DIA
+    =================================================*/
+        if(isset($_GET["datatableVentasDia"])){
+            $ventas=ControladorVentas::ctrgetVentasDia($_GET["datatableVentasDia"]);
+            $newventas=array_map(function($venta){
+                //ACUENTA
+                $venta["acuenta"]="<span class='min-w-60 btn btn-sm btn-success'>S/. ".$venta["acuenta"]."</span>";
+                // TOTAL
+                $venta["preciototal"]="<span class='min-w-60 btn btn-sm btn-primary'>S/. ".$venta["preciototal"]."</span>";
+                // DEBE
+                $venta["debe"]="<span class='min-w-60 btn btn-sm btn-danger'>S/. ".$venta["debe"]."</span>";
+
+                //PRODUCTOS
+                $venta['productos']??="";
+                $productos=preg_split('/,/',$venta['productos']);
+                $string="";
+                foreach ($productos as $producto) {
+                    $string.="<span class='btn btn-secondary btn-xs mr-1'>$producto</span>";
+                }
+                $venta['productos']="<div style='max-width:250px'>$string</div>";
+
+                return $venta;
+            },$ventas);
+            echo json_encode($newventas);
+        }
+        if(isset($_GET["datatableRecojosDia"])){
+            $ventas=ControladorVentas::ctrgetRecojosDia($_GET["datatableRecojosDia"]);
+            $newventas=array_map(function($venta){
+                //ACUENTA
+                $venta["acuenta"]="<span class='min-w-60 btn btn-sm btn-success'>S/. ".$venta["acuenta"]."</span>";
+                // TOTAL
+                $venta["preciototal"]="<span class='min-w-60 btn btn-sm btn-primary'>S/. ".$venta["preciototal"]."</span>";
+
+
+                //PRODUCTOS
+                $venta['productos']??="";
+                $productos=preg_split('/,/',$venta['productos']);
+                $string="";
+                foreach ($productos as $producto) {
+                    $string.="<span class='btn btn-secondary btn-xs mr-1'>$producto</span>";
+                }
+                $venta['productos']="<div style='max-width:250px'>$string</div>";
+
+                return $venta;
+            },$ventas);
+            echo json_encode($newventas);
+        }
     
     }
     /*--===============================================
@@ -97,4 +145,5 @@
         }
 
     }
+
     

@@ -70,7 +70,7 @@
                     </p>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item menu-is-opening menu-open">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fab fa-shopify"></i>
                     <p>
@@ -114,6 +114,14 @@
                 </ul>
             </li>
             <li class="nav-item">
+                <a href="gastos" class="nav-link">
+                    <i class="nav-icon fa fa-money-check-alt"></i>
+                    <p>
+                        Gastos
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="caja" class="nav-link">
                     <i class="nav-icon fa fa-cash-register"></i>
                     <p>
@@ -121,6 +129,7 @@
                     </p>
                 </a>
             </li>
+            
         </ul>
       </nav> 
     </div>
