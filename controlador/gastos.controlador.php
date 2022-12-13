@@ -20,6 +20,10 @@
         public static function ctrupdateGasto($gasto){
             $id=$gasto["id"];
             $gasto=array_filter($gasto);
+            ##nos aseguramos que exista un pago de cero
+            if(!isset($gasto["monto"])){
+                $gasto["monto"]=0;
+            }
              ##creamos el formato para el update $c1='v1',$c2='$v2'
              function merge($key,$value){
                 return "$key='$value'";
